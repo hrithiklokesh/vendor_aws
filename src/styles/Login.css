@@ -1,0 +1,1117 @@
+:root {
+  --default-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Ubuntu, "Helvetica Neue", Helvetica, Arial, "PingFang SC",
+    "Hiragino Sans GB", "Microsoft Yahei UI", "Microsoft Yahei",
+    "Source Han Sans CN", sans-serif;
+}
+
+body{
+  margin: 0%;
+}
+
+.login-main-container {
+  overflow: hidden;
+}
+
+.login-main-container,
+.login-main-container * {
+  box-sizing: border-box;
+}
+
+input,
+select,
+textarea,
+button {
+  outline: 0;
+}
+
+.login-main-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  /* bottom: 28px; */
+  background: #ffffff;
+  overflow: hidden;
+}
+
+.login-rectangle {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  left: 723px;
+  background: url(../assets/bg.png) no-repeat center;
+  background-size: cover;
+  opacity: 0.9;
+  z-index: 3;
+  
+}
+
+
+.login-login-card{
+  width: 50%;
+  height: 100%;
+}
+
+.login-cg {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: absolute;
+  /* height: 96px; */
+  top: 7px;
+  left: 91px;
+  color: #105a4a;
+  font-family: Poppins, var(--default-font-family);
+  font-size: 38px;
+  font-weight: 700;
+  line-height: 96px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.login-whats-new {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  position: absolute;
+  width: 124px;
+  height: 30px;
+  top: 40px;
+  left: 1078px;
+  color: #ffffff;
+  font-family: Poppins, var(--default-font-family);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 30px;
+  text-align: center;
+  white-space: nowrap;
+  z-index: 4;
+}
+
+.login-hello-user {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: absolute;
+  height: 48px;
+  top: 102px;
+  left: 91px;
+  color: #000000;
+  font-family: Poppins, var(--default-font-family);
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 48px;
+  text-align: left;
+  white-space: nowrap;
+  z-index: 2;
+}
+
+.login-next-step-success {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: absolute;
+  width: 350px;
+  height: 60px;
+  top: 145px;
+  left: 91px;
+  color: #000000;
+  font-family: Poppins, var(--default-font-family);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+  opacity: 0.5;
+  z-index: 1;
+}
+
+.login-carousel-container{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+ 
+}
+
+.login-carousel{
+   
+  position: absolute;
+  /* display: flex; */
+  top: 0;
+  width: 50%;
+  height: 100%;
+  left: 50%;
+  background-size: cover;
+  opacity: 0.9;
+  overflow: hidden;
+ 
+}
+
+.login-slide {
+  position: relative;
+  height: 100vh; /* Full viewport height */
+  overflow: hidden;
+}
+ 
+.login-image-container {
+  position: relative;
+  height: 100%;
+ 
+}
+.login-slide-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: relative;
+  z-index: 1;
+}
+ 
+.login-slide-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  text-align: center;
+  color: white;
+  width: 80%;
+  max-width: 600px;
+  margin-bottom: 60px;
+}
+ 
+.login-slick-dots {
+  position: absolute;
+  bottom: 40px !important; /* Adjust this value to control vertical position */
+  z-index: 3; /* Ensure dots appear above image */
+  width: 100%;
+}
+ 
+/* Dot styling */
+.login-slick-dots li button:before {
+  color: #ffffff !important; /* Inactive dot color */
+  opacity: 0.5 !important;
+  font-size: 10px !important;
+  transition: all 0.3s ease;
+}
+ 
+.login-slick-dots li.slick-active button:before {
+  color: #e3f0ed !important; /* Active dot color */
+  opacity: 1 !important;
+  font-size: 12px;
+}
+ 
+.login-slide-title {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+ 
+.login-slide-subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+ 
+.login-slide-button {
+  /* background: #21be9c; */
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 25px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: underline;
+}
+ 
+.login-slide-button:hover {
+  /* background: #1a9b7d; */
+  transform: translateY(-2px);
+}
+ 
+
+
+.login-rectangle-1,
+.login-rectangle-2 {
+  position: absolute;
+  width: 530px;
+  height: 50px;
+  border: 1px solid #000000;
+  border-radius: 12px;
+}
+
+.login-rectangle-1 {
+  top: 196px;
+  left: 91px;
+  z-index: 5;
+}
+
+.login-rectangle-2 {
+  top: 263px;
+  left: 91px;
+  z-index: 6;
+  border-radius: 12px;
+}
+
+.login-email-input,
+.login-password-input {
+  width: calc(100% - 70px);
+  height: 100%;
+  padding: 0 31px;
+  border: none;
+  background: transparent;
+  color: #000000;
+  font-family: Poppins, var(--default-font-family);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 36px;
+}
+
+.login-email-input::placeholder,
+.login-password-input::placeholder {
+  color: #c9c9c9;
+}
+
+/* Container for the 6 input boxes */
+.login-code-input-container {
+  position: absolute;
+  top: 196px;
+  left: 91px;
+  display: flex;
+  gap: 10px;
+  z-index: 5;
+}
+
+/* Style for each individual input box */
+.login-code-input-box {
+  width: 50px;
+  height: 50px;
+  border: 1px solid #000000;
+  border-radius: 8px;
+  text-align: center;
+  font-family: Poppins, var(--default-font-family);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 50px;
+  color: #000000;
+}
+
+.login-code-input-box:focus {
+  border-color: #21be9c;
+  outline: none;
+}
+
+.login-toggle-password {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 15;
+  width: 24px;
+  height: 24px;
+}
+
+.login-eye-on,
+.login-eye-off {
+  display: block;
+  width: 24px;
+  height: 24px;
+  background-size: cover;
+}
+
+.login-eye-on {
+  background: url("../assets/password_on.svg") no-repeat center;
+}
+
+.login-eye-off {
+  background: url("../assets/password_off.svg") no-repeat center;
+}
+
+/* Container for error message and icon */
+.error-container {
+  position: absolute;
+  top: 260px;
+  left: 91px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 5;
+}
+
+/* Error message style */
+.error-message {
+  color: #ff0000;
+  font-family: Poppins, var(--default-font-family);
+  font-size: 14px;
+  font-weight: 400;
+}
+
+/* Error icon positioning */
+.error-icon {
+  width: 24px;
+  height: 24px;
+  background: url("../assets/exclamation.svg") no-repeat center;
+  background-size: cover;
+}
+.error-icon {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  background: url("../assets/exclamation.svg") no-repeat center;
+  background-size: cover;
+  z-index: 15;
+  /* animation: glow 1.5s ease-in-out infinite alternate; */
+}
+
+
+.terms-section {
+  position: absolute;
+  top: 345px;
+  left: 91px;
+  display: flex;
+  align-items: center;
+  z-index: 11;
+}
+
+.rectangle-3 {
+  position: absolute;
+  top: -20px;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #000000;
+  border-radius: 2px;
+  margin-right: 10px;
+}
+
+.agree-to-caasdi-global {
+  position: absolute;
+  top:-20px;
+  left:30px;
+  color: #000000;
+  font-family: Poppins, var(--default-font-family);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  white-space: nowrap;
+}
+
+.terms-and-condition {
+  position: absolute;
+  top: -1px;
+  left: 31px;
+  color: #21be9c;
+  font-family: Poppins, var(--default-font-family);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  text-decoration: underline;
+  white-space: nowrap;
+  z-index: 13;
+}
+
+.login-rectangle-4,
+.login-rectangle-6 {
+  position: absolute;
+  width: 530px;
+  border: none;
+  cursor: pointer;
+  border-radius: 12px;
+}
+
+.login-rectangle-4 {
+  height: 50px;
+  top: 350px;
+  left: 91px;
+  background: url(https://static.codia.ai/image/2025-03-27/a8dd21a8-9dca-4103-8fb1-89c9725915ad.png)
+    no-repeat center;
+  background-size: cover;
+  z-index: 8;
+}
+
+.login-create-account {
+  position: absolute;
+  width: 190px;
+  height: 36px;
+  top: 5px;
+  left: 170px;
+  color: #ffffff;
+  font-family: Poppins, var(--default-font-family);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 36px;
+  text-align: center;
+  white-space: nowrap;
+  z-index: 9;
+}
+
+.vendor-project-management {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  position: absolute;
+  width: 345px;
+  height: 30px;
+  top: 495px;
+  left: 980px;
+  color: #ffffff;
+  font-family: Poppins, var(--default-font-family);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 30px;
+  text-align: center;
+  white-space: nowrap;
+  z-index: 21;
+}
+
+.smart-vendor-match {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  position: absolute;
+  width: 641px;
+  height: 96px;
+  top: 530px;
+  left: 838px;
+  color: #ffffff;
+  font-family: Poppins, var(--default-font-family);
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 24px;
+  text-align: center;
+  z-index: 22;
+}
+
+.login-or {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  position: absolute;
+  width: 17px;
+  height: 24px;
+  top: 425px;
+  left: 350px;
+  color: #000000;
+  font-family: Poppins, var(--default-font-family);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: center;
+  white-space: nowrap;
+  opacity: 0.5;
+  z-index: 16;
+}
+
+.login-line {
+  position: absolute;
+  width: 225px;
+  height: 2px;
+  top: 438px;
+  left: 396.996px;
+  background: url(https://static.codia.ai/image/2025-03-27/9d06f55e-f4a1-4c5e-9a2a-eac3c3cd39e6.svg)
+    no-repeat center;
+  background-size: cover;
+  z-index: 17;
+}
+
+.login-line-5 {
+  position: absolute;
+  width: 262.004px;
+  height: 2.016px;
+  top: 438px;
+  left: 50.996px;
+  background: url(https://static.codia.ai/image/2025-03-27/f3b9db9a-5f64-4f3e-8d9e-d2aad53b46c6.svg)
+    no-repeat center;
+  background-size: cover;
+  z-index: 18;
+}
+
+.login-rectangle-6 {
+  height: 50px;
+  top: 475px;
+  left: 91px;
+  border: 1px solid #000000;
+  z-index: 7;
+  border-radius: 16px;
+}
+
+.login-signup-with-google {
+  position: absolute;
+  width: 233px;
+  height: 36px;
+  top: 5px;
+  left: 160px;
+  color: #000000;
+  font-family: Poppins, var(--default-font-family);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 36px;
+  text-align: center;
+  white-space: nowrap;
+  z-index: 10;
+}
+
+.login-google {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  top: 12px;
+  left: 170px;
+  background: url(https://static.codia.ai/image/2025-03-27/fdbd1c0e-18aa-467a-b69c-d9b0d4d35d40.svg)
+    no-repeat center;
+  background-size: cover;
+  z-index: 19;
+  overflow: hidden;
+}
+
+.rectangle-7 {
+  position: absolute;
+  width: 60px;
+  height: 4px;
+  top: 640px;
+  left: 1068px;
+  background: #ffffff;
+  z-index: 23;
+  border-radius: 4px;
+}
+
+.rectangle-8 {
+  position: absolute;
+  width: 60px;
+  height: 4px;
+  top: 640px;
+  left: 1144px;
+  background: #ffffff;
+  opacity: 0.5;
+  z-index: 24;
+  border-radius: 4px;
+}
+
+.rectangle-9 {
+  position: absolute;
+  width: 60px;
+  height: 4px;
+  top: 640px;
+  left: 1217px;
+  background: #ffffff;
+  opacity: 0.5;
+  z-index: 25;
+  border-radius: 4px;
+}
+
+.login-section {
+  position: absolute;
+  width: 258px;
+  height: 24px;
+  top: 558px;
+  left: 237px;
+  font-family: Poppins, var(--default-font-family);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: left;
+  cursor: pointer;
+  white-space: nowrap;
+  z-index: 20;
+}
+
+.already-have-account {
+  position: relative;
+  color: #000000;
+  font-family: Poppins, var(--default-font-family);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+}
+
+.login {
+  position: relative;
+  color: #21be9c;
+  font-family: Poppins, var(--default-font-family);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  text-align: left;
+  text-decoration: underline;
+}
+
+
+
+/* Tablet View (768px - 1024px) */
+@media screen and (max-width: 1024px) {
+.rectangle {
+  width: 100%;
+}
+
+.cg {
+  font-size: 28px;
+  top: 7px;
+  left: 37px;
+}
+.hello-user{
+  top: 102px;
+  left: 40px;
+  position: absolute;
+}
+.next-step-success{
+  top: 145px;
+  left: 40px;
+  position: absolute;
+}
+.login-rectangle-1{
+  position: absolute;
+  top: 196px;
+  left: 40px;
+  width: 400px;
+}
+.login-rectangle-2{
+  position: absolute;
+  left: 40px;
+  width: 400px;
+  
+}
+
+
+.login-card {
+  width: 70%;
+}
+
+.login-or {
+  font-size: 16px;
+  top: 452px;
+  left: 128px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 202px;
+  margin: 10px auto;
+  
+ 
+}
+  .login-line{
+    position: absolute;
+    left: 42px;
+    width: 175.004px;
+    top: 475px;
+}
+
+.login-line-5{
+  position: absolute;
+  left: 242px;
+  width: 214.004px;
+  top: 475px;
+}
+
+.rectangle-3{
+  position: absolute;
+  top: -20px;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #000000;
+  border-radius: 2px;
+  margin-left: -43px;
+  }
+  .agree-to-caasdi-global,.terms-and-condition{
+    position:absolute;
+    margin-left: -25px;
+  } 
+  .login-rectangle-4{
+    position: absolute;
+    width: 412px;
+    left: 33px;
+    top: 400px;
+  }
+
+  .login-rectangle-6{
+    position: absolute;
+    top: 500px;
+    width: 412px;
+    left: 33px;
+  }
+  .create-account{
+    position: absolute;
+    top: 5;
+    left: 112px;
+  }
+  .login-google{
+  position: relative;
+  width: 24px;
+  height: 24px;
+  top: 0px;
+  left: 96px;
+  background: url(https://static.codia.ai/image/2025-03-27/fdbd1c0e-18aa-467a-b69c-d9b0d4d35d40.svg)
+    no-repeat center;
+  background-size: cover;
+  z-index: 19;
+  overflow: hidden;
+  }
+  .login-signup-with-google{
+    position: absolute;
+    top: 5px;
+    left: 88px;
+
+  }
+
+.login-create-account{
+  left: 103px;
+}  
+.login-slide-content{
+  left: 27%;
+}
+.login-section{
+  left: 103px;
+}
+
+  .su-already-have-account{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    left: -125px;
+  }
+  .su-login{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    top: 0px;
+    left: 68px;
+  }
+
+  .su-rectangle-5{
+    position: absolute;
+    width: 414px;
+    left: 32px;
+    top: 495px;
+  }
+}
+
+/* Mobile View (up to 768px) */
+@media screen and (max-width: 768px) {
+
+.su-code-input-box{
+  position: relative;
+  width: 35px;
+  height: 35px;
+  left: 160px;
+  top: 57px;
+
+}
+.login-card {
+  width: 90%;
+  height: auto;
+  padding: 20px;
+}
+.login-rectangle-1,
+.login-rectangle-2,
+.login-rectangle-4,
+.login-rectangle-6 {
+  max-width: 90%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.login-rectangle-1{
+  top: 196px;
+}
+
+.login-carousel{
+  position: absolute;
+  top: 0;
+  left: 108%;
+}
+
+
+.rectangle {
+  height: 100vh;
+  margin-left: 80px;
+
+}
+
+.login-cg{
+text-align: center;
+left: 50%;  
+font-family: Poppins, var(--default-font-family);
+font-size: 38px;
+font-weight: 700;
+transform: translateX(-50%);
+}
+
+.login-hello-user{
+  font-family: Poppins, var(--default-font-family);
+  font-size: 24px;
+  text-align: center;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.login-next-step-success {
+  font-family: Poppins, var(--default-font-family);
+  font-size: 20px;
+  text-align: center;
+  top: 140px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.next-step-success {
+  font-family: Poppins, var(--default-font-family);
+  font-size: 16px;
+}
+
+.code-input-box {
+  width: 35px;
+  height: 35px;
+}
+
+.login-or {
+  font-size: 16px;
+  top: 452px;
+  left: 276px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 202px;
+  margin: 10px auto;
+  
+ 
+}
+  .login-line{
+    position: absolute;
+    left: 178px;
+    width: 176.004px;
+    top: 475px;
+}
+
+.login-line-5{
+  position: absolute;
+  left: 395px;
+  width: 188.004px;
+  top: 475px;
+}
+
+.su-rectangle-3{
+  position: absolute;
+  top: -20px;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #000000;
+  border-radius: 2px;
+  margin-left: 103px;
+  }
+  .su-agree-to-caasdi-global,.terms-and-condition{
+    position:absolute;
+    margin-left: 102px;
+  } 
+  .login-create-account{
+    position: absolute;
+    top: 5px;
+    left: 104px;
+  }
+  .login-google{
+  position: relative;
+  width: 24px;
+  height: 24px;
+  top: 0px;
+  left: 92px;
+  background: url(https://static.codia.ai/image/2025-03-27/fdbd1c0e-18aa-467a-b69c-d9b0d4d35d40.svg)
+    no-repeat center;
+  background-size: cover;
+  z-index: 19;
+  overflow: hidden;
+  }
+  .login-signup-with-google{
+    position: absolute;
+    top: 5px;
+    left: 80px;
+  }
+  .su-already-have-account{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    left: 4px;
+  }
+  .login{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    top: 0px;
+    left: 192px;
+  }
+
+  .login-section{
+    left: 250px;
+  }
+
+  .su-rectangle-5{
+    position: absolute;
+    width: 414px;
+    left: 178px;
+    top: 495px;
+  }
+
+}
+
+@media screen and (max-width: 480px) {
+.next-step-success{
+  font-size: 15px;
+  left: 223px;
+  transform: translateX(-50%);
+}
+.su-code-input-box{
+  left: -17px;
+}
+.login-card {
+  width: 90%;
+  height: auto;
+  padding: 20px;
+}
+
+.rectangle {
+  height: 50vh;
+}
+
+.cg {
+  font-size: 24px;
+  text-align: center;
+  left: 199px;
+  transform: translateX(-50%);
+}
+
+.hello-user{
+  font-size: 17px;
+  text-align: center;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.next-step-success {
+  font-size: 15px;
+  text-align: center;
+  left: 252px;
+  transform: translateX(-50%);
+}
+
+
+.rectangle-1,
+.rectangle-2,
+.login-rectangle-4,
+.su-rectangle-5,
+.login-rectangle-6 {
+  width: 90%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.terms-section {
+  flex-direction: column;
+  text-align: center;
+}
+
+.create-account {
+  width: 100%;
+  left: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.login-or {
+  width: 100%;
+  left: 110px;
+  display: flex;
+  justify-content: center;
+}
+
+.login-line{
+  position: absolute;
+  left: 25px;
+  width: 140.004px;
+  top: 475px;
+}
+
+.login-line-5{
+position: absolute;
+left: 194px;
+width: 135.004px;
+top: 475px;
+}
+
+.login-google {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  top: 0px;
+  left: 84px;
+  background: url('https://static.codia.ai/image/2025-03-27/fdbd1c0e-18aa-467a-b69c-d9b0d4d35d40.svg')
+    no-repeat center;
+  background-size: cover;
+  z-index: 19;
+  overflow: hidden;
+}
+
+.login-signup-with-google {
+  width: 100%;
+  left: 16px;
+  display: flex;
+  justify-content: center;
+}
+
+.su-rectangle-3 {
+  position: absolute;
+  top: -15px;
+  width: 20px;
+  height: 20px;
+  left: 190px;
+  border: 1px solid #000000;
+  border-radius: 2px;
+  margin-left: -255px;
+}
+
+.su-agree-to-caasdi-global
+{
+  position: absolute;
+  left: 10px;
+  transform: translateX(-50%);
+}
+
+.su-terms-and-condition
+{
+  position: absolute;
+  left: 42px;
+  transform: translateX(-50%);
+}
+.already-have-account {
+  position: absolute;
+  font-family: Poppins, var(--default-font-family);
+  display: flex;
+  justify-content: center;
+  top: -9px;
+  left: -22%;
+  transform: translateX(-50%);
+}
+
+.login-create-account{
+  left: 60px;
+}
+
+.login {
+  position: absolute;
+  font-family: Poppins, var(--default-font-family);
+  display: flex;
+  justify-content: center;
+  text-align: left;
+  top: 18px;
+  left: -53px;
+  transform: translateX(-50%);
+  text-decoration: underline;
+}
+
+}

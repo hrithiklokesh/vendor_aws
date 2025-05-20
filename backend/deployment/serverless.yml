@@ -1,0 +1,158 @@
+service: vendor-dashboard-api
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  stage: ${opt:stage, 'dev'}
+  region: ${opt:region, 'us-east-1'}
+  environment:
+    NODE_ENV: ${opt:stage, 'dev'}
+    MONGODB_URI: ${ssm:/vendor-dashboard/${self:provider.stage}/MONGODB_URI, 'mongodb+srv://dhanush:Dhanush123@caasdiglobal.yahxc.mongodb.net/?retryWrites=true&w=majority&appName=CaasdiGlobal'}
+    SESSION_SECRET: ${ssm:/vendor-dashboard/${self:provider.stage}/SESSION_SECRET, '517f384b904d4e8a04abfc2ed2cad1422c59b472241bc6fa06908f5dfe93b2e2'}
+    GOOGLE_CLIENT_ID: ${ssm:/vendor-dashboard/${self:provider.stage}/GOOGLE_CLIENT_ID, '540364621159-6anfmspca2foov8tif1gvak3vqg089v3.apps.googleusercontent.com'}
+    GOOGLE_CLIENT_SECRET: ${ssm:/vendor-dashboard/${self:provider.stage}/GOOGLE_CLIENT_SECRET, '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'}
+    FRONTEND_URL: ${ssm:/vendor-dashboard/${self:provider.stage}/FRONTEND_URL, 'http://localhost:5173'}
+    S3_BUCKET_NAME: ${ssm:/vendor-dashboard/${self:provider.stage}/S3_BUCKET_NAME, 'mac-vendor-uploads'}
+    CONNECTIONS_TABLE: websocket-connections-${self:provider.stage}
+    WEBSOCKET_API_URL: ''
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - dynamodb:Query
+            - dynamodb:Scan
+            - dynamodb:GetItem
+            - dynamodb:PutItem
+            - dynamodb:UpdateItem
+            - dynamodb:DeleteItem
+            - dynamodb:BatchWriteItem
+          Resource:
+            - !GetAtt VendorsTable.Arn
+            - !GetAtt GoogleUsersTable.Arn
+            - !GetAtt LeadsTable.Arn
+            - !GetAtt ProjectsTable.Arn
+            - !GetAtt WebsocketConnectionsTable.Arn
+        - Effect: Allow
+          Action:
+            - s3:PutObject
+            - s3:GetObject
+            - s3:DeleteObject
+          Resource: 'arn:aws:s3:::${self:provider.environment.S3_BUCKET_NAME}/*'
+        - Effect: Allow
+          Action:
+            - execute-api:ManageConnections
+          Resource: '*'
+
+plugins:
+  - serverless-dotenv-plugin
+  - serverless-prune-plugin
+
+package:
+  individually: true
+  patterns:
+    - '!node_modules/.cache/**'
+    - '!node_modules/*/test/**'
+    - '!node_modules/*/tests/**'
+    - '!node_modules/*/docs/**'
+    - '!__tests__/**'
+
+functions:
+  api:
+    handler: lambda.handler
+    events:
+      - httpApi:
+          path: /api/{proxy+}
+          method: any
+    package:
+      patterns:
+        - '!node_modules/aws-sdk/**' # AWS Lambda already includes AWS SDK
+    timeout: 30 # seconds
+
+  websocketConnect:
+    handler: websocketHandler.connect
+    events:
+      - websocket:
+          route: $connect
+    timeout: 10
+
+  websocketDisconnect:
+    handler: websocketHandler.disconnect
+    events:
+      - websocket:
+          route: $disconnect
+    timeout: 10
+
+  websocketMessage:
+    handler: websocketHandler.message
+    events:
+      - websocket:
+          route: $default
+    timeout: 10
+    
+resources:
+  Resources:
+    VendorsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: vendors-${self:provider.stage}
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+
+    GoogleUsersTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: google_users-${self:provider.stage}
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: googleId
+            AttributeType: S
+        KeySchema:
+          - AttributeName: googleId
+            KeyType: HASH
+
+    LeadsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: leads-${self:provider.stage}
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+
+    ProjectsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: projects-${self:provider.stage}
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+
+    WebsocketConnectionsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:provider.environment.CONNECTIONS_TABLE}
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: connectionId
+            AttributeType: S
+        KeySchema:
+          - AttributeName: connectionId
+            KeyType: HASH
+        TimeToLiveSpecification:
+          AttributeName: ttl
+          Enabled: true 
