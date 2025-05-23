@@ -4,10 +4,11 @@ import dotenv from 'dotenv';
 import session from 'express-session';
 import passport from 'passport'; 
 import mongoose from 'mongoose';
-import http from 'http'; // Add http module for WebSocket server
-
-// Import both MongoDB and DynamoDB routes
+import './config/passport.js';
+import { initWebSocketServer } from './websocket/notificationSocket.js';
 import connectDB from './config/db.js';
+
+// Import routes and models
 import vendorRoutes from './routes/vendorRoutes.js';
 import dynamoVendorRoutes from './routes/dynamoVendorRoutes.js';
 import authRoutes from './routes/authRoutes.js';
@@ -19,21 +20,14 @@ import dynamoLeadRoutes from './routes/dynamoLeadRoutes.js';
 import dynamoProjectLeadRoutes from './routes/dynamoProjectLeadRoutes.js';
 import dynamoProjectRoutes from './routes/dynamoProjectRoutes.js';
 import notificationRoutes from './routes/notificationRoutes.js';
-import './config/passport.js'; // 👈 Loads Google OAuth strategy
-
-// Import WebSocket initialization
-import { initWebSocketServer } from './websocket/notificationSocket.js';
+import { createContact } from './models/DynamoContact.js';
 
 dotenv.config();
 
+connectDB();
+
 const app = express();
-const PORT = process.env.PORT || 5001;
 
-// Create HTTP server (needed for WebSocket)
-const server = http.createServer(app);
-
-// Connect to MongoDB (still needed for GoogleUser model)
-connectDB(); // your reusable connectDB function
 app.use(cors({
   origin: [
     'http://localhost:5173',
@@ -45,34 +39,24 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Session config
-app.use(
-  session({
-    secret: process.env.SESSION_SECRET || 'someRandomSecret',
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-      maxAge: 24 * 60 * 60 * 1000, // 24 hours
-      httpOnly: true, // Ensures cookie is not accessible via JavaScript
-      sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax', // Adjusts based on environment
-      secure: process.env.NODE_ENV === 'production', // Only true in production
-    },
-  })
-);
+app.use(session({
+  secret: process.env.SESSION_SECRET || 'someRandomSecret',
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    maxAge: 24 * 60 * 60 * 1000,
+    httpOnly: true,
+    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+    secure: process.env.NODE_ENV === 'production',
+  },
+}));
 
-
-// Passport config
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Import DynamoDB contact model
-import { createContact } from './models/DynamoContact.js';
-
-// === Route for landing page contact form using DynamoDB ===
 app.post("/api/contact", async (req, res) => {
   try {
     const { firstName, lastName, email, phone, message } = req.body;
@@ -85,29 +69,20 @@ app.post("/api/contact", async (req, res) => {
   }
 });
 
-// === API Routes for vendor platform ===
-// Use DynamoDB routes instead of MongoDB routes
 app.use('/api/vendor', dynamoVendorRoutes);
-app.use('/api/auth', dynamoAuthRoutes); // Google login/callback/set-role
-app.use('/api/files', fileRoutes); // File upload/delete routes
-app.use('/api/vendor', productRoutes); // Product routes
-app.use('/api/vendor', serviceRoutes); // Service routes
-app.use('/api', dynamoLeadRoutes); // Leads routes
-app.use('/api/project-leads', dynamoProjectLeadRoutes); // Project leads routes
-app.use('/api', dynamoProjectRoutes); // Projects routes
-app.use('/api/notifications', notificationRoutes); // Notifications routes
+app.use('/api/auth', dynamoAuthRoutes);
+app.use('/api/files', fileRoutes);
+app.use('/api/vendor', productRoutes);
+app.use('/api/vendor', serviceRoutes);
+app.use('/api', dynamoLeadRoutes);
+app.use('/api/project-leads', dynamoProjectLeadRoutes);
+app.use('/api', dynamoProjectRoutes);
+app.use('/api/notifications', notificationRoutes);
 
-// Error handler
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send('Something broke!');
 });
 
-// Initialize WebSocket server
-const wss = initWebSocketServer(server);
-console.log('✅ WebSocket server initialized');
-
-// Use HTTP server instead of Express app to listen
-server.listen(PORT, () => {
-  console.log(`✅ Server running on port ${PORT}`);
-});
+// ✅ Export the app for Lambda
+export default app;
